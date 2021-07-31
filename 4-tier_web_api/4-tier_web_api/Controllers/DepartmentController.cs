@@ -28,5 +28,16 @@ namespace _4_tier_web_api.Controllers
         public void Add(DepartmentModel dept) {
             DepartmentService.AddDepartment(dept);
         }
+
+        [Route("api/Department/All/Details")]
+        public List<DepartmentDetail> GetDepartmentWithDetails() {
+            return DepartmentService.GetDepartmentWithDetails();
+        }
+
+        [Route("api/Department/{id}/Details")]
+        public DepartmentDetail GetDepartmentDetail(int id)
+        {
+            return DepartmentService.GetDepartmentDetail(id);
+        }
     }
 }

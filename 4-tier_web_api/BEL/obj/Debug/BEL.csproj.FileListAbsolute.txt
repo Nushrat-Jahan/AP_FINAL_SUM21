@@ -4,3 +4,9 @@ C:\Users\USER\source\repos\4-tier_web_api\BEL\obj\Debug\BEL.csproj.AssemblyRefer
 C:\Users\USER\source\repos\4-tier_web_api\BEL\obj\Debug\BEL.csproj.CoreCompileInputs.cache
 C:\Users\USER\source\repos\4-tier_web_api\BEL\obj\Debug\BEL.dll
 C:\Users\USER\source\repos\4-tier_web_api\BEL\obj\Debug\BEL.pdb
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\bin\Debug\BEL.dll
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\bin\Debug\BEL.pdb
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\obj\Debug\BEL.csproj.AssemblyReference.cache
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\obj\Debug\BEL.csproj.CoreCompileInputs.cache
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\obj\Debug\BEL.dll
+D:\F folder task\BSC notes\11th semester\ATP 2 Final\AP_FINAL_SUM21\4-tier_web_api\BEL\obj\Debug\BEL.pdb
