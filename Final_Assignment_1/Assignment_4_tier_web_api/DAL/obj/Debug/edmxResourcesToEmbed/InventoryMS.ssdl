@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InventoryMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Category_id" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="Qty" Type="int" />
+    <Property Name="Description" Type="text" />
+    <Property Name="Created_at" Type="datetime" />
+    <Property Name="Updated_at" Type="datetime" />
+    <Property Name="Deleted_at" Type="datetime" />
+    <Property Name="Created_by" Type="varchar" MaxLength="50" />
+    <Property Name="Updated_by" Type="varchar" MaxLength="50" />
+    <Property Name="Deleted_by" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_products_categories">
+    <End Role="categories" Type="Self.categories" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="Category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InventoryMSModelStoreContainer">
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
