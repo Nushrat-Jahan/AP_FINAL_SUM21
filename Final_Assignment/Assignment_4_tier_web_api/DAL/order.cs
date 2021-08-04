@@ -12,28 +12,19 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class product
+    public partial class order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public product()
+        public order()
         {
             this.showorders = new HashSet<showorder>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Category_id { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public Nullable<int> Qty { get; set; }
-        public string Description { get; set; }
+        public string Status { get; set; }
+        public int Amount { get; set; }
         public Nullable<System.DateTime> Created_at { get; set; }
-        public Nullable<System.DateTime> Updated_at { get; set; }
-        public Nullable<System.DateTime> Deleted_at { get; set; }
-        public string Created_by { get; set; }
-        public string Updated_by { get; set; }
-        public string Deleted_by { get; set; }
     
-        public virtual category category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<showorder> showorders { get; set; }
     }

@@ -30,13 +30,23 @@ app.config(["$routeProvider","$locationProvider",function($routeProvider,$locati
         templateUrl : "views/pages/addcategories.html",
         controller: 'addcategories'
     })
+    .when("/orders", {
+        templateUrl : "views/pages/orders.html",
+        controller: 'orders'
+    })
+  
+    .when("/orders/:id", {
+        templateUrl : "views/pages/showorder.html",
+        controller: 'showorder'
+    })
+
+    .when("/placeorder", {
+        templateUrl : "views/pages/placeorder.html",
+        controller: 'placeorder'
+    })
     .otherwise({
         redirectTo:"/"
     });
-      //$locationProvider.html5Mode(true);
-      //$locationProvider.hashPrefix('');
-      //if(window.history && window.history.pushState){
-      //$locationProvider.html5Mode(true);
-  //}
+     
 
 }]);

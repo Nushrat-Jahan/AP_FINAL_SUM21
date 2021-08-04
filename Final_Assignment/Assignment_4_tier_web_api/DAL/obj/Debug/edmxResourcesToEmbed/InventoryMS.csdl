@@ -8,6 +8,16 @@
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="products" Relationship="Self.FK_products_categories" FromRole="categories" ToRole="products" />
   </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Created_at" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="showorders" Relationship="Self.FK_ProductOrders_orders" FromRole="orders" ToRole="showorders" />
+  </EntityType>
   <EntityType Name="product">
     <Key>
       <PropertyRef Name="Id" />
@@ -25,6 +35,29 @@
     <Property Name="Updated_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Deleted_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="category" Relationship="Self.FK_products_categories" FromRole="products" ToRole="categories" />
+    <NavigationProperty Name="showorders" Relationship="Self.FK_ProductOrders_products" FromRole="products" ToRole="showorders" />
+  </EntityType>
+  <EntityType Name="showorder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Product_id" Type="Int32" Nullable="false" />
+    <Property Name="Order_id" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK_ProductOrders_orders" FromRole="showorders" ToRole="orders" />
+    <NavigationProperty Name="product" Relationship="Self.FK_ProductOrders_products" FromRole="showorders" ToRole="products" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <Association Name="FK_products_categories">
     <End Role="categories" Type="Self.category" Multiplicity="1" />
@@ -38,12 +71,47 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ProductOrders_orders">
+    <End Role="orders" Type="Self.order" Multiplicity="1" />
+    <End Role="showorders" Type="Self.showorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="showorders">
+        <PropertyRef Name="Order_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductOrders_products">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="showorders" Type="Self.showorder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="showorders">
+        <PropertyRef Name="Product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="InventoryMSEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="categories" EntityType="Self.category" />
+    <EntitySet Name="orders" EntityType="Self.order" />
     <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="showorders" EntityType="Self.showorder" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
       <End Role="categories" EntitySet="categories" />
       <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrders_orders" Association="Self.FK_ProductOrders_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="showorders" EntitySet="showorders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductOrders_products" Association="Self.FK_ProductOrders_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="showorders" EntitySet="showorders" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
